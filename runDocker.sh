@@ -4,5 +4,5 @@
 docker build -t server .
 
 # Run the Docker container
-docker run -p 8080:8080 -e PORT=8080 server
+docker run -p 8080:8080 server
 

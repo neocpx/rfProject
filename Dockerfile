@@ -1,6 +1,7 @@
 # Use the official Go image as the base image
-FROM golang:1.17
 
+FROM golang:1.17-alpine
+RUN apk add --no-cache file
 # Set the working directory inside the container
 WORKDIR /app
 
