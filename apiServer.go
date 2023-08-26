@@ -72,6 +72,7 @@ func (s *Server) Run() {
 			http.Error(w, "Failed to determine file type", http.StatusInternalServerError)
 			return
 		}
+		os.Remove(path)
 		res := FileData{
 			Name: header.Filename,
 			Info: string(stdout),
