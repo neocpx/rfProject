@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"io"
 	"net/http"
@@ -87,5 +88,7 @@ func (s *Server) Run() {
 		w.Header().Set("Content-Type", "application/json")
 		w.Write(JsonRes)
 	})
+
+	fmt.Println("server running!!!")
 	http.ListenAndServe(s.listernAddr, r)
 }
