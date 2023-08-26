@@ -19,3 +19,20 @@
 
 # Go workspace file
 go.work
+
+# Log files
+*.log
+
+# OS-specific files
+.DS_Store
+
+# Environment files
+.env
+
+# Exclude build artifacts and binaries
+/bin/
+/build/
+/dist/
+
+# Ignore Go modules cache
+/go.sum
