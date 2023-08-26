@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"html/template"
 	"io"
 	"net/http"
 	"os"
@@ -31,7 +32,12 @@ func (s *Server) Run() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Server Ready!!!"))
+		template, err := template.ParseFiles("templates/index.html")
+		if err != nil {
+			http.Error(w, "UI error", http.StatusInternalServerError)
+			return
+		}
+		template.Execute(w, nil)
 	})
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(404)

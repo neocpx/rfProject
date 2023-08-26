@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #file-type {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded",()=>{
+        const uploadForm = document.getElementById('upload-form');
+        const fileInput = document.getElementById('file-input');
+        const fileNameElement = document.getElementById('file-Name');
+        const fileTypeElement = document.getElementById('file-Type');
+        const fileSizeElement = document.getElementById('file-Size');
+
+        uploadForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                const data = await response.json();
+                console.log(data)
+                displayFileInfo(data)
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+        function displayFileInfo(data) {
+            fileNameElement.textContent = `File Name: ${data.file_name}\n`;
+            fileTypeElement.textContent = `File Information: ${data.file_information}\n`;
+            fileSizeElement.textContent = `File Size: ${data.file_size} bytes`;
+        } 
+    });
+              
+    </script>
+</head>
+<body>
+    <h1>File Upload</h1>
+    <form id="upload-form">
+        <input type="file" id="file-input">
+        <button type="submit">Upload</button>
+    </form>
+    <h1>File Data :: </h1>
+    <p id="file-Name"></p>
+    <p id="file-Type"></p>
+    <p id="file-Size"></p>
+    
+</body>
+</html>
+
