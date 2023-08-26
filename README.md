@@ -1,4 +1,4 @@
-# rapidFort Offline Project 
+# RapidFort Offline Project 
 # Docker Container Build and Run Instructions
 
 This repository contains my attempt of Rapid fort offline project. Follow the steps below to build and run the container using the provided script.
