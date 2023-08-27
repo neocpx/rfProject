@@ -1,5 +1,4 @@
 # Use the official Go image as the base image
-
 FROM golang:1.17-alpine
 RUN apk add --no-cache file
 # Set the working directory inside the container
@@ -17,6 +16,9 @@ RUN go build -o app main.go apiServer.go
 
 # Set a default port number (can be overridden by user)
 ENV PORT 8080
+
+# Create a directory for uploaded files
+RUN mkdir /app/uploads
 
 # Expose the port that the application will listen on
 EXPOSE $PORT
