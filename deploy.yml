@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-deployment
+  name: rfProject-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app
+      app: rfproject
   template:
     metadata:
       labels:
-        app: app
+        app: rfproject
     spec:
       containers:
-        - name: app-container
-          image: app:latest
+        - name: rfproject
+          image: neocpx/rfproject:latest
           ports:
             - containerPort: 8080
